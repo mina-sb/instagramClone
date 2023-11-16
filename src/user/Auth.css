@@ -1,0 +1,137 @@
+.auth-container {
+  max-width: 25rem;
+  text-align: center;
+  padding: 2rem;
+  background-color: #Fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.auth-img {
+  width: 55%;
+  max-width: 16rem;
+}
+.auth-container-title {
+  margin-bottom: 1rem;
+}
+.link-to-signup-p {
+  font-size: 0.7em;
+  font-weight: 300;
+  padding: 0.4rem;
+  margin-top: 0rem !important;
+  margin-block-end: 0em;
+}
+.link-to-signup-p span {
+  margin-left: 0.2rem;
+}
+
+
+.button {
+  font: inherit;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.4rem 0.6rem;
+  outline: none;
+  font-weight: 600;
+  transition: all ease 0.55s;
+  margin: 6px 0;
+}
+
+.main-color-button {
+  border: 2px solid var(--main-color);
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+.main-color-button:hover {
+  border: 2px solid var(--third-color);
+  background: var(--third-color);
+  color: var(--bg-color);
+}
+.third-color-button {
+  border: 2px solid var(--third-color);
+  background: var(--third-color);
+  color: var(--bg-color);
+}
+.third-color-button:hover {
+  border: 2px solid var(--main-color);
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+.bg-color-button {
+  border: 2px solid var(--bg-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+.main-color-button:hover {
+  border: 2px solid var(--third-color);
+  background: var(--third-color);
+  color: var(--bg-color);
+}
+.outline-button {
+  border: 2px solid var(--main-color);
+  background: transparent;
+  color: var(--main-color);
+}
+.outline-button:hover {
+  border: 2px solid var(--main-color);
+  background: var(--main-color);
+  color: var(--second-color);
+}
+
+.full-width-button {
+  width: 100%;
+}
+
+.disabled {
+  border: 2px solid var(--bg-color);
+  background: var(--bg-color);
+  color: #cacaca;
+  cursor: default;
+}
+.disabled:hover {
+  border: 2px solid var(--bg-color);
+  background: var(--bg-color);
+  color: #cacaca;
+}
+
+.btn-xs {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+.btn-xl {
+  font-size: 1.2em !important;
+  font-weight: 600 !important;
+  padding: 0.8rem 1.8rem;
+}
+.ml {
+  margin-left: 0.5rem;
+}
+
+
+
+.input {
+  border: 1.5px solid #dfe1f0;
+  outline: none;
+  width: 90%;
+  padding: 8px 16px;
+  background: #f6f7ff;
+  color: inherit;
+  border-radius: 4px;
+  margin: 6px 0;
+  font-family: inherit;
+  text-align: left;
+  font-size: 0.8em;
+  transition: 0.4s;
+}
+.input::placeholder {
+  font-size: 0.8em;
+}
+.input-required {
+  border: 1.5px solid #eb1818;
+}

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import img from "../assets/1.jpg";
 import Post from './Post';
 import "./Posts.css";
 
