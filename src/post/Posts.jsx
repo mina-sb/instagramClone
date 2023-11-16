@@ -18,12 +18,19 @@ const Posts = () => {
     <div>
       <h1>Home</h1>
       <ul className="posts">
-        {posts && posts.map((post) => (
-          <li key={post.id}>
-            <Post username={post.username} id={post.id} likes={post.likes} img={post.img} />
-          </li>
-        ))}
+        {posts &&
+          posts.map((post) => (
+            <li key={post.id}>
+              <Post
+                username={post.username}
+                id={post.id}
+                likes={post.likes}
+                img={post.img}
+              />
+            </li>
+          ))}
       </ul>
+      <div className="new-post-btn">+</div>
     </div>
   );
 }
