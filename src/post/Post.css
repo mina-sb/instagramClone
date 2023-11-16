@@ -20,15 +20,14 @@
   margin-top: 10px;
   padding: 0rem 0.5rem 0.5rem; 
     background-color: #fff;
+    padding-left:1rem ;
 }
 
 .post-button {
   cursor: pointer;
   font-size: 1.6em;
 }
-.mr-2{
-  margin-right: 0.8rem;
-}
+
 
 .user-info{
   display: flex;
@@ -44,7 +43,6 @@
   height: 40px;
 }
 
-
 .username{
   font-weight: 600;
   font-size: 1.1em;
@@ -53,6 +51,75 @@
 }
 
 .caption{
-   padding: 1rem 1rem;
+   padding: 0.5rem 1rem 1rem;
    text-align: justify;
+}
+
+.likes{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.small{
+  width: 30px;
+  height: 30px;
+  margin-left: 1rem;
+  border: #fff 2px solid;
+}
+.mr-ngtv{
+  margin-right: -30px;
+}
+.mr-2{
+  margin-right: 0.8rem;
+}
+
+.like-by-span{
+  margin-left: 2.5rem;
+  font-weight: 500;
+  font-size: .95em;
+}
+
+.comments{
+   padding: 0.5rem 1rem 1rem;
+   text-align: justify;
+}
+.hr{
+    border-top: 1px solid #e6e6e6;
+}
+.addComment{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  gap:0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+.input-comment{
+  background-color: none;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  width: 100%;
+}
+.comments-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.comment-item{
+  display: flex;
+  align-items: start;
+  margin: 1rem 0;
+
+}
+.comment{
+  display: inline-block;
+  text-align: justify;
+      margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+}
+.ml-1{
+  margin-right: 0.6rem;
+  display: inline-block;
 }

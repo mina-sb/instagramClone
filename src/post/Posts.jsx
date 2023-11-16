@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import { useSelector } from "react-redux";
 import Post from './Post';
 import "./Posts.css";
 
 
 
 const Posts = () => {
-  const [posts, setPosts] = useState([]);
-  const data = [
-    { id: 1, username: "mina", like: [], share: [], save: [], comments: [] },
-    { id: 2, username: "mina", like: [], share: [], save: [], comments: [] },
-    { id: 3, username: "ali", like: [], share: [], save: [], comments: [] },
-  ];
 
+  const data = useSelector((state) => state.posts.posts);
+  const [ posts, setPosts ] = useState([]);
   useEffect(() => {
-    setPosts(data);
-    
+    setPosts(data); 
 }, []);
   
   
@@ -22,9 +18,9 @@ const Posts = () => {
     <div>
       <h1>Home</h1>
       <ul className="posts">
-        {posts.map((post) => (
+        {posts && posts.map((post) => (
           <li key={post.id}>
-            <Post username={post.username} id={post.id} likelist={post.like} />
+            <Post username={post.username} id={post.id} likes={post.likes} img={post.img} />
           </li>
         ))}
       </ul>
