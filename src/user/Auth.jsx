@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
@@ -9,10 +9,12 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [ isLoginMode, setIsLoginMode ] = useState(true);
   const navigate = useNavigate();
+  let storedUser;
 
   const switchModeHandler = () => {
    setIsLoginMode(!isLoginMode)
   }
+
   const authHandler = () => {
     const user = {
       userInfo: {
@@ -24,9 +26,20 @@ const Auth = () => {
     localStorage.setItem("user", JSON.stringify(user));
     navigate('/posts');
   }
+  useEffect(() => {
+    storedUser = localStorage.getItem('user');
+    if(storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if(parsedUser && parsedUser.userInfo.email) {
+        setUsername(parsedUser.userInfo.username);
+        navigate("/posts");
+      }
+    }
+  }, [])
+  
   return (
     <React.Fragment>
-      <div className="auth-container">
+     <div className="auth-container">
         <h2 className="auth-container-title">
           {isLoginMode ? "Login" : "Sign Up"}
         </h2>
@@ -80,7 +93,7 @@ const Auth = () => {
             </span>
           </p>
         </button>
-      </div>
+        </div>    
     </React.Fragment>
   );
 }
