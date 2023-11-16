@@ -21,9 +21,13 @@ const Auth = () => {
         username: username,
         email: email,
         password : password
-      }
+      },
+      likedPosts: [],
+      savedPosts : []
     }
     localStorage.setItem("user", JSON.stringify(user));
+    
+
     navigate('/posts');
   }
   useEffect(() => {

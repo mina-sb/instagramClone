@@ -7,11 +7,10 @@ import "./Posts.css";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const data = [
-    { id: 1, username: "mina" },
-    { id: 2, username: "mina" },
-    { id: 3, username: "ali" },
+    { id: 1, username: "mina", like: [], share: [], save: [], comments: [] },
+    { id: 2, username: "mina", like: [], share: [], save: [], comments: [] },
+    { id: 3, username: "ali", like: [], share: [], save: [], comments: [] },
   ];
-  let elements;
 
   useEffect(() => {
     setPosts(data);
@@ -25,7 +24,7 @@ const Posts = () => {
       <ul className="posts">
         {posts.map((post) => (
           <li key={post.id}>
-            <Post username={post.username} />
+            <Post username={post.username} id={post.id} likelist={post.like} />
           </li>
         ))}
       </ul>
