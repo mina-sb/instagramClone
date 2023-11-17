@@ -18,7 +18,6 @@ const Modal = (props) => {
           <i class="bx bxl-instagram-alt"></i>
           <i class="bx bxl-whatsapp"></i>
           <i class="bx bxl-telegram"></i>
-          {/* Add more social media icons as needed */}
         </div>
         <button
           onClick={props.onClose}
