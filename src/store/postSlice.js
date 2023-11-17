@@ -12,6 +12,8 @@ const postSlice = createSlice({
         share: 0,
         saves: [],
         comments: [],
+        caption:
+          "Embark on a journey of innovation with our cutting-edge demo. Explore seamless features, experience breakthrough technology, and redefine possibilities. Join us in shaping the future together.",
       },
       {
         id: 2,
@@ -21,6 +23,8 @@ const postSlice = createSlice({
         share: 0,
         saves: [],
         comments: [],
+        caption:
+          "Embark on a journey of innovation with our cutting-edge demo. Explore seamless features, experience breakthrough technology, and redefine possibilities. Join us in shaping the future together.",
       },
       {
         id: 3,
@@ -30,6 +34,8 @@ const postSlice = createSlice({
         share: 0,
         saves: [],
         comments: [],
+        caption:
+          "Embark on a journey of innovation with our cutting-edge demo. Explore seamless features, experience breakthrough technology, and redefine possibilities. Join us in shaping the future together.",
       },
     ],
   },

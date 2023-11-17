@@ -50,6 +50,7 @@ const Posts = () => {
                 id={post.id}
                 likes={post.likes}
                 img={post.img}
+                caption = {post.caption}
               />
             </li>
           ))}

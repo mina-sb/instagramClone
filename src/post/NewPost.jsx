@@ -1,16 +1,21 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import { addPost } from "../store/postSlice";
-import { useNavigate } from "react-router";
+import {useNavigate} from "react-router";
+import store from "./../store/index";
+import localStorageHandler from "../LocalStorageHandler";
+import { useUser } from "../userContext";
+
 import "./NewPost.css";
 
 
 const NewPost = () => {
   
-   const [caption, setCaption] = useState("");
+  const [ caption, setCaption ] = useState("");
+    const { username: contextUsername, setUser } = useUser();
    const [media, setMedia] = useState(null);
-  const dispatch = useDispatch();
-    const navigate = useNavigate();
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
 
    const handleCaptionChange = (event) => {
@@ -22,25 +27,27 @@ const NewPost = () => {
      setMedia(file);
    };
 
-   const handleCreatePost = () => {
-    
-
-     setCaption("");
-     setMedia(null);
-
+  const handleCreatePost = () => {
+      const state = JSON.parse(JSON.stringify(store.getState().posts.posts));
 
       const newPost = {
-        id: 1,
-        username: "ahmad",
+        id: state.length + 1,
+        username: contextUsername,
         img: "https://jovial-sammet-j3svpro5t.storage.iran.liara.space/products/1.jpg",
         likes: [],
         share: 0,
         saves: [],
         comments: [],
+        caption: caption
       };
      
      dispatch(addPost(newPost));
-     navigate("/");
+     setCaption("");
+     setMedia(null);
+     const newState = JSON.parse(JSON.stringify(store.getState().posts.posts));
+     localStorageHandler.setItem("data", newState);
+    navigate("/");
+    
    };
 
 

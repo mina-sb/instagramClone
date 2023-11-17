@@ -8,36 +8,34 @@ import './Post.css';
 import Modal from '../UlElements/Modal';
 
 
-const Post = ({username, id, img}) => {
+const Post = ({ username, id, img, caption }) => {
   const { username: contextUsername, setUser } = useUser();
   const [liked, setLiked] = useState(false);
-  const [ saved, setSaved ] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const [ comment, setComment ] = useState('');
+  const [comment, setComment] = useState("");
   const [comments, setComments] = useState("");
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const [likedBy , setLikedBy] = useState(' ')
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [likedBy, setLikedBy] = useState(" ");
   const dispatch = useDispatch();
-  
-
 
   useEffect(() => {
-     setLiked(store.getState()
-       .posts.posts[ id - 1 ].likes.includes(contextUsername));
-    setLiked(store.getState().posts.posts[ id - 1 ].saves.includes(contextUsername));
-    setShowComments(true)
-        loadComments();
-
+    setLiked(
+      store.getState().posts.posts[id - 1].likes.includes(contextUsername)
+    );
+    setSaved(
+      store.getState().posts.posts[id - 1].saves.includes(contextUsername)
+    );
+    setShowComments(true);
+    loadComments();
   }, []);
-   
+
   useEffect(() => {
-    const likes = store.getState().posts.posts[ id - 1 ].likes;
-    if(likes.length)
-      setLikedBy('Liked by ' + likes.join(','))
-    else
-      setLikedBy(false)
-  }, [ liked ])
-  
+    const likes = store.getState().posts.posts[id - 1].likes;
+    if (likes.length) setLikedBy("Liked by " + likes.join(","));
+    else setLikedBy(false);
+  }, [liked]);
+
   const savePost = () => {
     dispatch(postSave({ id, contextUsername }));
     setSaved((prevState) => !prevState);
@@ -49,33 +47,34 @@ const Post = ({username, id, img}) => {
     setLiked((prevState) => !prevState);
     const state = JSON.parse(JSON.stringify(store.getState().posts.posts));
     localStorageHandler.setItem("data", state);
-
   };
   const isCommentsOpen = () => {
     setShowComments(!showComments);
-  }
+  };
   const handleKeyDown = (e) => {
-    if(e.key === "Enter" && comment) {
+    if (e.key === "Enter" && comment) {
       dispatch(addComment({ id, contextUsername, comment }));
-      setComment('')
+      setComment("");
     }
     const state = JSON.parse(JSON.stringify(store.getState().posts.posts));
     localStorageHandler.setItem("data", state);
-    loadComments()
+    loadComments();
   };
 
- const handleShareClick = () => {
-   setIsModalOpen(prev => !prev);
-   dispatch(sharePost({id}));
-   const state = JSON.parse(JSON.stringify(store.getState().posts.posts));
-   localStorageHandler.setItem("data", state);
+  const handleShareClick = () => {
+    setIsModalOpen((prev) => !prev);
+    dispatch(sharePost({ id }));
+    const state = JSON.parse(JSON.stringify(store.getState().posts.posts));
+    localStorageHandler.setItem("data", state);
   };
-  
- const handleCloseModal = () => {
-   setIsModalOpen((prev) => !prev);
- };
+
+  const handleCloseModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
   const loadComments = () => {
-    const commentss = JSON.parse(JSON.stringify(store.getState().posts.posts[ id - 1 ].comments));
+    const commentss = JSON.parse(
+      JSON.stringify(store.getState().posts.posts[id - 1].comments)
+    );
     const y = commentss.map((cm) => {
       return (
         <li className="comment-item">
@@ -87,8 +86,7 @@ const Post = ({username, id, img}) => {
         </li>
       );
     });
-    setComments(y)
-  
+    setComments(y);
   };
 
   return (
@@ -144,11 +142,7 @@ const Post = ({username, id, img}) => {
         </div>
         <div className="caption">
           <b className="mr-2">{username}</b>
-          <span>
-            Also, this is inside a web browser (Safari) and only seems to be
-            working on this account. My personal account still looks like a
-            mobile version on desktop (with all the left menu stuff at the top)
-          </span>
+          <span>{caption}</span>
         </div>
         {showComments ? (
           <div className="comments">
@@ -179,8 +173,6 @@ const Post = ({username, id, img}) => {
       {isModalOpen && <Modal onClose={handleCloseModal} />}
     </>
   );
-    
-  
 };
 
 export default Post
