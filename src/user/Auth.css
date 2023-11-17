@@ -135,3 +135,13 @@
 .input-required {
   border: 1.5px solid #eb1818;
 }
+.alert{
+  width: 100%;
+  border: 1px solid #eb1818;
+  color: #eb1818;
+  background-color: #fff2f2;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 0.8em;
+}

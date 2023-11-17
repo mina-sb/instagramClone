@@ -12,6 +12,10 @@ const Auth = () => {
   const [ isLoginMode, setIsLoginMode ] = useState(true);
   const { username: contextUsername , setUser } = useUser();
   const navigate = useNavigate();
+  const [ touched, setTouched ] = useState(false);
+   const [alert, setAlert] = useState(false);
+
+
   let storedUser;
 
   useEffect(() => {
@@ -24,29 +28,52 @@ const Auth = () => {
 
 
   const switchModeHandler = () => {
-   setIsLoginMode(!isLoginMode)
+    setIsLoginMode(!isLoginMode);
+    isLoginMode && setAlert(false)
   }
 
-  const authHandler = () => {
-    const user = {
-      userInfo: {
-        username: username,
-        email: email,
-        password : password
-      },
-      posts : [],
-      likedPosts: [],
-      savedPosts : []
+  const authHandler = (e) => {
+     e.preventDefault();
+    if(isLoginMode) {
+      if(password && email) {
+        setTouched(false);
+        const retrievedData = localStorageHandler.getItem("user");
+        if(retrievedData && retrievedData.userInfo.email === email && retrievedData.userInfo.password === password) {
+           setUser(retrievedData.userInfo.username);
+           navigate("/posts"); 
+        }
+        else {
+          setAlert(true)
+        }
+      } else {
+        setTouched(true);
+      }
+      
+    } else {      
+      if(username && password && email) {
+        localStorageHandler.clearItem();
+        const user = {
+          userInfo: {
+            username: username,
+            email: email,
+            password: password,
+          }
+        }
+        localStorageHandler.setItem("user", user);
+        const retrievedData = localStorageHandler.getItem("user");
+        setUser(retrievedData.userInfo.username);
+        navigate('/posts'); 
+      }
+      else {
+         setTouched(true);
+      }
     }
-    localStorageHandler.setItem("user", user);
-    setUser(retrievedData.userInfo.username);
-    navigate('/posts');
   }
  
   
   return (
     <React.Fragment>
-     <div className="auth-container">
+      <div className="auth-container">
         <h2 className="auth-container-title">
           {isLoginMode ? "Login" : "Sign Up"}
         </h2>
@@ -56,7 +83,9 @@ const Auth = () => {
               type="text"
               id="username"
               placeholder="Name"
-              className="input"
+              className={`input ${
+                touched && !username ? "input-required" : ""
+              }`}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -67,7 +96,7 @@ const Auth = () => {
             type="text"
             id="email"
             placeholder="Email"
-            className="input"
+            className={`input ${touched && !email ? "input-required" : ""}`}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -75,7 +104,7 @@ const Auth = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className="input"
+            className={`input ${touched &&  !password ? "input-required" : ""}`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -100,7 +129,13 @@ const Auth = () => {
             </span>
           </p>
         </button>
-        </div>    
+        {
+           alert ?  <span className='alert'>
+          You have to signup first!
+        </span> : ''
+        }
+       
+      </div>
     </React.Fragment>
   );
 }
