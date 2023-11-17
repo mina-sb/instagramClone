@@ -12,10 +12,12 @@ import "./NewPost.css";
 const NewPost = () => {
   
   const [ caption, setCaption ] = useState("");
-    const { username: contextUsername, setUser } = useUser();
+   const { username: contextUsername, setUser } = useUser();
    const [media, setMedia] = useState(null);
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const [touched, setTouched] = useState(false);
+
 
 
    const handleCaptionChange = (event) => {
@@ -28,6 +30,9 @@ const NewPost = () => {
    };
 
   const handleCreatePost = () => {
+
+    if(!caption) setTouched(true)
+    else {
       const state = JSON.parse(JSON.stringify(store.getState().posts.posts));
 
       const newPost = {
@@ -41,13 +46,13 @@ const NewPost = () => {
         caption: caption
       };
      
-     dispatch(addPost(newPost));
-     setCaption("");
-     setMedia(null);
-     const newState = JSON.parse(JSON.stringify(store.getState().posts.posts));
-     localStorageHandler.setItem("data", newState);
-    navigate("/");
-    
+      dispatch(addPost(newPost));
+      setCaption("");
+      setMedia(null);
+      const newState = JSON.parse(JSON.stringify(store.getState().posts.posts));
+      localStorageHandler.setItem("data", newState);
+      navigate("/");
+    }
    };
 
 
@@ -73,15 +78,7 @@ const NewPost = () => {
           placeholder="Write your caption..."
           value={caption}
           onChange={handleCaptionChange}
-          style={{
-            width: "calc(100% - 3.5rem)",
-            marginBottom: "10px",
-            padding: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-            margin: "1rem 1rem 1rem",
-            outline: "none",
-          }}
+          className={`text-area ${touched && !caption ? "input-required" : ""}`}
           rows={4}
         />
         <input

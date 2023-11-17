@@ -11,5 +11,14 @@
   font-size: 1.7em;
   line-height: 1.1;
     padding: 0 1rem;
+}
 
+.text-area{
+  width: calc(100% - 3.5rem);
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 1rem 1rem 1rem;
+            outline: none;
 }
