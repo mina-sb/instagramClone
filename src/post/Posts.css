@@ -11,7 +11,7 @@ h1 {
 }
 .new-post-btn{
   color: #fff;
- box-shadow: rgb(144, 148, 153) 0px 20px 30px -10px;
+      box-shadow: rgb(144, 148, 153) 0px 20px 30px -10px;
       position: fixed;
       bottom: 16px;
       left: 50%;
