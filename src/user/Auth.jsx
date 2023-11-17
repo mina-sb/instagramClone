@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import localStorageHandler from "../LocalStorageHandler";
+import { useUser } from "../userContext";
 import "./Auth.css";
 
 
@@ -8,8 +10,18 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [ isLoginMode, setIsLoginMode ] = useState(true);
+  const { username: contextUsername , setUser } = useUser();
   const navigate = useNavigate();
   let storedUser;
+
+  useEffect(() => {
+   const retrievedData = localStorageHandler.getItem("user");
+   if (retrievedData && retrievedData.userInfo.username) {
+     setUser(retrievedData.userInfo.username);
+     navigate("/posts");
+   }
+ }, []);
+
 
   const switchModeHandler = () => {
    setIsLoginMode(!isLoginMode)
@@ -22,24 +34,15 @@ const Auth = () => {
         email: email,
         password : password
       },
+      posts : [],
       likedPosts: [],
       savedPosts : []
     }
-    localStorage.setItem("user", JSON.stringify(user));
-    
-
+    localStorageHandler.setItem("user", user);
+    setUser(retrievedData.userInfo.username);
     navigate('/posts');
   }
-  useEffect(() => {
-    storedUser = localStorage.getItem('user');
-    if(storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      if(parsedUser && parsedUser.userInfo.email) {
-        setUsername(parsedUser.userInfo.username);
-        navigate("/posts");
-      }
-    }
-  }, [])
+ 
   
   return (
     <React.Fragment>

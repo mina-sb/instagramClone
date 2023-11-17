@@ -9,7 +9,7 @@ const postSlice = createSlice({
         username: "ahmad",
         img: "https://jovial-sammet-j3svpro5t.storage.iran.liara.space/products/1.jpg",
         likes: [],
-        share: [],
+        share: 0,
         saves: [],
         comments: [],
       },
@@ -18,7 +18,7 @@ const postSlice = createSlice({
         username: "mina",
         img: "https://jovial-sammet-j3svpro5t.storage.iran.liara.space/products/5.jpg",
         likes: [],
-        share: [],
+        share: 0,
         saves: [],
         comments: [],
       },
@@ -27,18 +27,15 @@ const postSlice = createSlice({
         username: "ali",
         img: "https://jovial-sammet-j3svpro5t.storage.iran.liara.space/products/2.jpg",
         likes: [],
-        share: [],
+        share: 0,
         saves: [],
         comments: [],
       },
     ],
   },
   reducers: {
-    addPost: (state, action) => {
-      state.posts.push(action.payload);
-    },
     postLike: (state, action) => {
-      const { id: postId, username: userId } = action.payload;
+      const { id: postId, contextUsername: userId } = action.payload;
       const post = state.posts.find((post) => post.id === postId);
       if (post) {
         if (!post.likes.includes(userId)) {
@@ -49,7 +46,7 @@ const postSlice = createSlice({
       }
     },
     postSave: (state, action) => {
-      const { id: postId, username: userId } = action.payload;
+      const { id: postId, contextUsername: userId } = action.payload;
       let result;
       const post = state.posts.find((post) => post.id === postId);
       if (post) {
@@ -63,20 +60,39 @@ const postSlice = createSlice({
       }
     },
     addComment: (state, action) => {
-      const { id: postId, username, comment } = action.payload;
+      const { id: postId, contextUsername, comment } = action.payload;
       const postIndex = state.posts.findIndex((post) => post.id === postId);
-      if(postIndex !== -1) {
+      if (postIndex !== -1) {
         const com = {
           comment: comment,
-          username: username,
+          username: contextUsername,
         };
         state.posts[postIndex].comments.push(com);
       }
     },
-
-    // Additional reducers for likes, saves, comments, shares, etc.
+    addPost: (state, action) => {
+      const newPost = action.payload;
+      state.posts.push(newPost);
+    },
+    sharePost: (state, action) => {
+      const { id: postId } = action.payload;
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        post.share++;
+      }
+    },
+    updateInitialState: (state, action) => {
+      state.posts = action.payload || [];
+    },
   },
 });
 
-export const { addPost, postLike, postSave, addComment } = postSlice.actions;
+export const {
+  postLike,
+  postSave,
+  addComment,
+  addPost,
+  sharePost,
+  updateInitialState,
+} = postSlice.actions;
 export default postSlice.reducer;
