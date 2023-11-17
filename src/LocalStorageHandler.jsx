@@ -7,6 +7,10 @@ const localStorageHandler = {
   setItem: (key, data) => {
     localStorage.setItem(key, JSON.stringify(data));
   },
+
+  clearItem: (key) => {
+    localStorage.clear(key);
+  },
 };
 
 export default localStorageHandler;
