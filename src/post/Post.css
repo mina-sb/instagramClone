@@ -3,8 +3,13 @@
   display: inline-block;
   border-radius: 5px;
   background-color: #fff;
-  width: 480px;
+  width: 90%;
   margin: 1rem 0;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    width: 480px; 
+  }
 }
 
 .post-image {

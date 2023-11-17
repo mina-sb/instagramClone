@@ -73,7 +73,7 @@ const Auth = () => {
   
   return (
     <React.Fragment>
-      <div className="auth-container">
+      <div className="auth-container myDiv">
         <h2 className="auth-container-title">
           {isLoginMode ? "Login" : "Sign Up"}
         </h2>
@@ -104,7 +104,7 @@ const Auth = () => {
             type="password"
             id="password"
             placeholder="Password"
-            className={`input ${touched &&  !password ? "input-required" : ""}`}
+            className={`input ${touched && !password ? "input-required" : ""}`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -129,12 +129,7 @@ const Auth = () => {
             </span>
           </p>
         </button>
-        {
-           alert ?  <span className='alert'>
-          You have to signup first!
-        </span> : ''
-        }
-       
+        {alert ? <span className="alert">You have to signup first!</span> : ""}
       </div>
     </React.Fragment>
   );

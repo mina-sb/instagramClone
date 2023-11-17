@@ -22,3 +22,7 @@
             margin: 1rem 1rem 1rem;
             outline: none;
 }
+.newPost-container{
+  display: flex;
+  justify-content: center;
+}

@@ -1,3 +1,6 @@
+.posts-container{
+  padding: 1rem;
+}
 .posts{
   list-style: none;
   margin: 0;
@@ -8,6 +11,10 @@
 h1 {
   font-size: 2.2em;
   line-height: 1.1;
+  padding-left: 1.1rem;
+  @media (min-width: 768px) {
+    padding-left: 0; 
+  }
 }
 .new-post-btn{
   color: #fff;
@@ -25,4 +32,8 @@ h1 {
       height: 55px;
       border-radius: 50%;
       cursor: pointer;
+}
+.li{
+  display: flex;
+  justify-content: center;
 }

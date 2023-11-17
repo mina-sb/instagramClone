@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 .auth-img {
   width: 55%;
@@ -145,3 +144,5 @@
   box-sizing: border-box;
   font-size: 0.8em;
 }
+
+

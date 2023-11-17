@@ -29,7 +29,17 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #FAFAFA;
+    box-sizing: border-box;
+
 }
 
+.myDiv {
+  width: 80%; 
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    width: 25rem; 
+  }
+}
 
 

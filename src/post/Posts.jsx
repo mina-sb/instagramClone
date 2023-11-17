@@ -39,18 +39,18 @@ const Posts = () => {
   }
   
   return (
-    <div>
+    <div className='posts-container'>
       <h1>Hello, {contextUsername}</h1>
       <ul className="posts">
         {posts &&
           posts.map((post) => (
-            <li key={post.id}>
+            <li key={post.id} className='li'>
               <Post
                 username={post.username}
                 id={post.id}
                 likes={post.likes}
                 img={post.img}
-                caption = {post.caption}
+                caption={post.caption}
               />
             </li>
           ))}

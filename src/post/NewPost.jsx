@@ -58,51 +58,55 @@ const NewPost = () => {
 
 
   return (
-    <div className="post-container">
-      <h1 className="newPost-title">New Post</h1>
-      <div
-        style={{
-          borderRadius: "10px",
-        }}
-      >
-        {media && (
-          <img
-            src={URL.createObjectURL(media)}
-            alt="Uploaded Media"
-            style={{
-              width: "100%",
-            }}
-          />
-        )}
-        <textarea
-          placeholder="Write your caption..."
-          value={caption}
-          onChange={handleCaptionChange}
-          className={`text-area ${touched && !caption ? "input-required" : ""}`}
-          rows={4}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleMediaChange}
-          style={{ marginBottom: "10px", marginLeft: "1rem" }}
-        />
-        <br />
-        <button
-          onClick={handleCreatePost}
+    <div className='newPost-container'>
+      <div className="post-container myDiv">
+        <h1 className="newPost-title">New Post</h1>
+        <div
           style={{
-            marginLeft: "1rem",
-            backgroundColor: "#3897f0",
-            color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-            cursor: "pointer",
-            border: "none",
-            marginBottom: "1rem",
+            borderRadius: "10px",
           }}
         >
-          Post
-        </button>
+          {media && (
+            <img
+              src={URL.createObjectURL(media)}
+              alt="Uploaded Media"
+              style={{
+                width: "100%",
+              }}
+            />
+          )}
+          <textarea
+            placeholder="Write your caption..."
+            value={caption}
+            onChange={handleCaptionChange}
+            className={`text-area ${
+              touched && !caption ? "input-required" : ""
+            }`}
+            rows={4}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleMediaChange}
+            style={{ marginBottom: "10px", marginLeft: "1rem" }}
+          />
+          <br />
+          <button
+            onClick={handleCreatePost}
+            style={{
+              marginLeft: "1rem",
+              backgroundColor: "#3897f0",
+              color: "white",
+              padding: "10px",
+              borderRadius: "5px",
+              cursor: "pointer",
+              border: "none",
+              marginBottom: "1rem",
+            }}
+          >
+            Post
+          </button>
+        </div>
       </div>
     </div>
   );
